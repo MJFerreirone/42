@@ -14,12 +14,13 @@
 % \renewcommand\UrlFont{\color{blue}\rmfamily}
 
 \usepackage[backend=biber,sorting=nyt,bibencoding=latin1,abbreviate=false,mincrossrefs=3,style=numeric,maxnames=30]{biblatex}
+\usepackage{multirow}
 \addbibresource{bib/db.bib}
 
 
 \begin{document}
 %
-\title{Title\thanks{Technical report of the task force 42 from ISWS 2022 led by Heiko Paulheim.}}
+\title{Learning Class Definitions by Link Prediction (preliminary)\thanks{Technical report of the task force 42 from ISWS 2022 led by Heiko Paulheim.}}
 
 %
 %\titlerunning{Abbreviated paper title}
@@ -53,8 +54,6 @@ The abstract should briefly summarize the contents of the paper in
 \section{Research Questions}
 \label{sec:rq}
 \input{src/rq.tex}
-
-Are knowledge graph embeddings helpful in predicting entity classes?
 
 
 \section{Empirical Semantics}
