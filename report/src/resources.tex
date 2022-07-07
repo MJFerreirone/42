@@ -21,13 +21,16 @@ Criteria: (1), (2), (3).
 This dataset is used in calculating TF-IDF.
 \end{enumerate}
 
+Dataset 3: How many combinations we have for every category? 
+Dataset 4: N of all the pairs in the whole DBpedia.
+
 The resulting datasets, SPARQL-queries, and code for pre-processing are documented and openly available on GitHub\footnote{https://github.com/AndreiNesterov/42}.
 
 \begin{table}[]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{llllll}
 \hline
-Category URI & Predicate & Object & N objects & Rank & Reciprocal rank \\ \hline
+Category URI & Predicate & Object & N subjects & Rank & Reciprocal rank \\ \hline
 \multicolumn{1}{|l|}{Novels\_by\_Stephen\_King} & \multicolumn{1}{l|}{author} & \multicolumn{1}{l|}{Stephen\_King} & \multicolumn{1}{l|}{44} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \hline
 \multicolumn{1}{|l|}{\multirow{2}{*}{Swedish\_death\_metal\_musical\_groups}} & \multicolumn{1}{l|}{genre} & \multicolumn{1}{l|}{Death\_metal} & \multicolumn{1}{l|}{61} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \cline{2-6} 
 \multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{hometown} & \multicolumn{1}{l|}{Sweden} & \multicolumn{1}{l|}{22} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{0.5} \\ \hline
