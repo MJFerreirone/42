@@ -1,0 +1,10 @@
+SELECT (COUNT(?x) AS ?c) ?y ?z
+
+WHERE {
+
+?x dct:subject <http://dbpedia.org/resource/Category:Novels_by_Stephen_King> .
+?x ?y ?z .
+FILTER(REGEX(?y, "http://dbpedia.org/ontology"))
+FILTER(!REGEX(?y, "http://dbpedia.org/ontology/wikiPage"))}
+
+ORDER BY DESC(?c)

@@ -1,0 +1,13 @@
+SELECT DISTINCT ?x ?p ?o
+
+WHERE {
+
+?x dct:subject <http://dbpedia.org/resource/Category:category_name> .
+?s dct:subject <http://dbpedia.org/resource/Category:category_name> . 
+?s ?p ?o .
+
+FILTER (REGEX(?p, "http://dbpedia.org/ontology"))
+FILTER(REGEX(?o, "http://dbpedia.org/resource/"))
+FILTER(!REGEX(?p,"http://dbpedia.org/ontology/wiki"))
+
+}
