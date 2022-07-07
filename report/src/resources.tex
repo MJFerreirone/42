@@ -1,44 +1,54 @@
-\textit{[1 page]}
-
 \noindent
 Our use-case focusses on DBpedia categories (why?). A category in DBpedia has a type of \textit{skos:Concept}.
-There are more than 2 million categories in DBpedia. We manually selected 13 categories (motivation?) for our experiment. For every category, we manually selected predicate-object pairs that represent and distinguish a category. For example, the pair "author"-"Stephen\_King" was chosen as an indicative of the category "Novels\_by\_Stephen\_King". For six categories, more than one predicatex-object pair was selected. 
+There are more than 2 million categories in DBpedia. We manually selected 13 categories (motivation?) for our experiment.
+For every category, we manually selected predicate-object pairs that represent and distinguish a category.
+For example, the pair "author"-"Stephen\_King" was chosen as an indicative of the category "Novels\_by\_Stephen\_King".
+For six categories, more than one predicate-object pair was selected. 
 
-Three datasets were retrieved from DBpedia with SPARQL-queries:
-1. Getting the number of subjects with the same predicate and object for every category.
+Four datasets were retrieved from DBpedia with SPARQL-queries:
+\begin{enumerate}
+\item Getting the number of subjects with the same predicate and object for every category.
 Criteria: (1) predicates are in the DBpedia ontology, (2) predicates not referring to Wikipedia (not containing the word "wiki" in their names).
 For example, there are 44 objects with predicate "author" and object "Stephen\_King" in the category "Novels\_by\_Stephen\_King".
 This predicate-object pair is the most frequent in the category and it is indicative for the category.
-The purpose of this dataset is to calculate the frequency of the predicate-object pairs in every category (ranking) and calculate reciprocal rank. The overview of the selected categories, their indicative object-predicate pairs and ranks is presented in \ref{tab:dbpedia_categories}. Refer to the SPARQL-query. 
-2. Getting all triples for every category. Criteria: (1), (2), and (3) objects with URI containing "http://dbpedia.org/resource/" to filter out objects with literal values.
-This dataset is used for evaluation. Refer to SPARQL-query.
-3. Getting all combinations of subjects and predicate-object-pairs in a category. Criteria: (1), (2), (3). Refer to SPARQL-query.
+The purpose of this dataset is to calculate the frequency of the predicate-object pairs in every category (ranking) and calculate reciprocal rank.
+The overview of the selected categories, their indicative object-predicate pairs and ranks is presented in Table \ref{tab:dbpedia_categories}.
+\item  Getting all triples for every category. Criteria: (1), (2), and (3) objects with URI containing "http://dbpedia.org/resource/" to filter out objects with literal values.
+This dataset is used for evaluation.
+\item Getting all combinations of subjects and predicate-object-pairs in a category.
+Criteria: (1), (2), (3).
+\item Counting the occurrences of the predicate-object pairs for every category in the whole DBpedia.
+This dataset is used in calculating TF-IDF.
+\end{enumerate}
 
+The resulting datasets, SPARQL-queries, and code for pre-processing are documented and openly available on GitHub\footnote{https://github.com/AndreiNesterov/42}.
 
 \begin{table}[]
-\caption{DBpedia categories selected for experiment}
-\label{tab:dbpedia_categories}
-\begin{tabular}{|l|l|l|l|l|l|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
 \hline
 Category URI & Predicate & Object & N objects & Rank & Reciprocal rank \\ \hline
-Novels\_by\_Stephen\_King & author & Stephen\_King & 44 & 1 &  \\ \hline
-\multirow{2}{*}{Swedish\_death\_metal\_musical\_groups} & genre & Death\_metal & 61 &  &  \\ \cline{2-6} 
- & hometown & Sweden & 22 &  &  \\ \hline
-Red\_Hot\_Chili\_Peppers\_songs & artist & Red\_Hot\_Chili\_Peppers & 49 &  &  \\ \hline
-\multirow{3}{*}{English\_pop\_pianists} & genre & Pop\_music &  &  &  \\ \cline{2-6} 
- & birthPlace & England &  &  &  \\ \cline{2-6} 
- & instrument & Piano &  &  &  \\ \hline
-1990s\_American\_sitcoms & genre & Sitcom & 273 &  &  \\ \hline
-Films\_produced\_by\_Denzel\_Washington & producer & Denzel\_Washington & 6 &  &  \\ \hline
-\multirow{3}{*}{Hilltowns\_in\_Emilia-Romagna} & region & Emilia-Romagna & 2 &  &  \\ \cline{2-6} 
- & country & Italy & 2 &  &  \\ \cline{2-6} 
- & province & Province\_of\_Forlì-Cesena & 1 &  &  \\ \hline
-Languages\_of\_Namibia & spokenIn & Namibia & 13 &  &  \\ \hline
-Italian\_Renaissance\_painters & movement & Italian\_Renaissance &  &  &  \\ \hline
-\multirow{2}{*}{Philippine\_television\_talk\_shows} & genre & Talk\_show & 78 &  &  \\ \cline{2-6} 
- & country & Philippines & 23 &  &  \\ \hline
-Scottish\_clans & country & Scotland & 1 &  &  \\ \hline
-Argentine\_Primera\_División\_players & team & Argentina\_national\_football\_team &  &  &  \\ \hline
-Birds\_of\_Europe & class & Bird & 1 &  &  \\ \hline
-\end{tabular}
+\multicolumn{1}{|l|}{Novels\_by\_Stephen\_King} & \multicolumn{1}{l|}{author} & \multicolumn{1}{l|}{Stephen\_King} & \multicolumn{1}{l|}{44} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Swedish\_death\_metal\_musical\_groups}} & \multicolumn{1}{l|}{genre} & \multicolumn{1}{l|}{Death\_metal} & \multicolumn{1}{l|}{61} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \cline{2-6} 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{hometown} & \multicolumn{1}{l|}{Sweden} & \multicolumn{1}{l|}{22} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{0.5} \\ \hline
+\multicolumn{1}{|l|}{Red\_Hot\_Chili\_Peppers\_songs} & \multicolumn{1}{l|}{artist} & \multicolumn{1}{l|}{Red\_Hot\_Chili\_Peppers} & \multicolumn{1}{l|}{49} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \hline
+\multicolumn{1}{|l|}{\multirow{3}{*}{English\_pop\_pianists}} & \multicolumn{1}{l|}{genre} & \multicolumn{1}{l|}{Pop\_music} & \multicolumn{1}{l|}{7} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \cline{2-6} 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{birthPlace} & \multicolumn{1}{l|}{England} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{0.166} \\ \cline{2-6} 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{instrument} & \multicolumn{1}{l|}{Piano} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{16} & \multicolumn{1}{l|}{0.062} \\ \hline
+\multicolumn{1}{|l|}{1990s\_American\_sitcoms} & \multicolumn{1}{l|}{genre} & \multicolumn{1}{l|}{Sitcom} & \multicolumn{1}{l|}{273} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \hline
+\multicolumn{1}{|l|}{Films\_produced\_by\_Denzel\_Washington} & \multicolumn{1}{l|}{producer} & \multicolumn{1}{l|}{Denzel\_Washington} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{0.5} \\ \hline
+\multicolumn{1}{|l|}{\multirow{3}{*}{Hilltowns\_in\_Emilia-Romagna}} & \multicolumn{1}{l|}{region} & \multicolumn{1}{l|}{Emilia-Romagna} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \cline{2-6} 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{country} & \multicolumn{1}{l|}{Italy} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \cline{2-6} 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{province} & \multicolumn{1}{l|}{Province\_of\_Forlì-Cesena} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{0.333} \\ \hline
+\multicolumn{1}{|l|}{Languages\_of\_Namibia} & \multicolumn{1}{l|}{spokenIn} & \multicolumn{1}{l|}{Namibia} & \multicolumn{1}{l|}{13} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{0.333} \\ \hline
+\multicolumn{1}{|l|}{Italian\_Renaissance\_painters} & \multicolumn{1}{l|}{movement} & \multicolumn{1}{l|}{Italian\_Renaissance} & \multicolumn{1}{l|}{15} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{0.333} \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Philippine\_television\_talk\_shows}} & \multicolumn{1}{l|}{genre} & \multicolumn{1}{l|}{Talk\_show} & \multicolumn{1}{l|}{78} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{1} \\ \cline{2-6} 
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{country} & \multicolumn{1}{l|}{Philippines} & \multicolumn{1}{l|}{23} & \multicolumn{1}{l|}{6} & \multicolumn{1}{l|}{0.166} \\ \hline
+\multicolumn{1}{|l|}{Scottish\_clans} & \multicolumn{1}{l|}{country} & \multicolumn{1}{l|}{Scotland} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{N/A} & \multicolumn{1}{l|}{0} \\ \hline
+\multicolumn{1}{|l|}{Argentine\_Primera\_División\_players} & \multicolumn{1}{l|}{team} & \multicolumn{1}{l|}{Argentina\_national\_football\_team} & \multicolumn{1}{l|}{656} & \multicolumn{1}{l|}{5} & \multicolumn{1}{l|}{0.2} \\ \hline
+Birds\_of\_Europe & class & Bird & 1 & N/A & 0 \\ \hline
+\end{tabular}%
+}
+\caption{DBpedia categories selected for experiment}
+\label{tab:dbpedia_categories}
 \end{table}

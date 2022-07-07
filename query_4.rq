@@ -1,0 +1,7 @@
+SELECT (COUNT(?x) AS ?c)
+
+WHERE {
+
+?x <http://dbpedia.org/ontology/predicate_name> <http://dbpedia.org/resource/object_name> .
+
+}
