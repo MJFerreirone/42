@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.16)  7 JUL 2022 12:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.3.16)  8 JUL 2022 12:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -882,19 +882,32 @@ LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 LaTeX Warning: Citation 'Berners-Lee2001' on page 1 undefined on input line 50.
 
 
-(./src/rq.tex) (./src/def.tex) (./src/intro.tex) (./src/related.tex)
-(./src/resources.tex [1
+(./src/rq.tex) (./src/def.tex) (./src/intro.tex) (./src/related.tex [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
+(./src/resources.tex
+
+LaTeX Warning: Reference `' on page 2 undefined on input line 25.
+
+
+Overfull \hbox (4.98814pt too wide) in paragraph at lines 27--28
+[]\OT1/cmr/m/n/10 The re-sult-ing datasets, SPARQL-queries, and code are doc-u-
+mented and openly
+ []
+
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `htbp') on input line 26.
+               Default added (so using `htbp') on input line 30.
 
-) (./src/approach.tex) (./src/evaluation.tex [2]) (./src/conclusions.tex)
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `htbp') on input line 63.
+
+) (./src/approach.tex) (./src/evaluation.tex [2] [3]) (./src/conclusions.tex)
 
 LaTeX Warning: Empty bibliography on input line 93.
 
-[3] (./main.aux)
+[4] (./main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -911,10 +924,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20421 strings out of 478994
- 410745 string characters out of 5858184
- 1124570 words of memory out of 5000000
- 37562 multiletter control sequences out of 15000+600000
+ 20423 strings out of 478994
+ 410773 string characters out of 5858184
+ 1145578 words of memory out of 5000000
+ 37564 multiletter control sequences out of 15000+600000
  410991 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,12n,102p,737b,1409s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -934,10 +947,10 @@ e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/
 21/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/202
 1/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/
 texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb>
-Output written on main.pdf (3 pages, 162980 bytes).
+Output written on main.pdf (4 pages, 170513 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 105 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  109 words of extra memory for PDF output out of 10000 (max. 10000000)
 
